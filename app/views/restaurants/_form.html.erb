@@ -1,0 +1,35 @@
+<%= form_with(model: restaurant) do |form| %>
+  <% if restaurant.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(restaurant.errors.count, "error") %> prohibited this restaurant from being saved:</h2>
+
+      <ul>
+        <% restaurant.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :owner_image, style: "display: block" %>
+    <%= image_tag restaurant.owner_image.variant({ resize_to_limit: [500, 500]}) if restaurant.owner_image.attached? %>
+    <%= form.file_field :owner_image %>
+  </div>
+
+  <div>
+    <%= form.label :logo, style: "display: block" %>
+    <%= image_tag restaurant.logo.variant({ resize_to_limit: [500, 500]}) if restaurant.logo.attached? %>
+    <%= form.file_field :logo %>
+  </div>
+
+  <div>
+    <%= form.label :hero, style: "display: block" %>
+    <%= image_tag restaurant.hero.variant({ resize_to_limit: [500, 500]}) if restaurant.hero.attached? %>
+    <%= form.file_field :hero %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

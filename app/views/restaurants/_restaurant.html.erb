@@ -1,0 +1,23 @@
+<div id="<%= dom_id restaurant %>">
+  <p>
+    <strong>Owner:</strong>
+    <% if restaurant.owner_image.attached? %>
+      <%= link_to image_tag(restaurant.owner_image.variant({ resize_to_limit: [1_000, 1_000], face_crop: { padding: 0.3 }})), restaurant.owner_image %>
+    <% end %>
+  </p>
+
+  <p>
+    <strong>Logo:</strong>
+    <% if restaurant.logo.attached? %>
+      <%= link_to image_tag(restaurant.logo.variant(:vectorized), width: 100, height: 100), restaurant.logo %>
+    <% end %>
+  </p>
+
+  <p>
+    <strong>Hero:</strong>
+    <% if restaurant.hero.attached? %>
+      <%= link_to image_tag(restaurant.hero.variant({ resize_to_limit: [400, 300], remove_bg: true })), restaurant.hero %>
+    <% end %>
+  </p>
+
+</div>
