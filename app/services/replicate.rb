@@ -37,6 +37,7 @@ module Replicate
     end
 
     def run(version:, input:)
+      puts "Running Replicate prediction with version: #{version}, input: #{input}"
       prediction = create_prediction(version: version, input: input)
       prediction_id = prediction["id"]
       loop do
