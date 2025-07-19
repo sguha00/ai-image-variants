@@ -45,16 +45,15 @@ module ImageProcessing::Vips::AiProcessors
       raise
     end
 
-    def reframe(aspect_ratio: "4:3", quality: :low, prompt: nil)
+    def reframe(aspect_ratio: "4:3", quality: :low, prompt: nil, url:)
       puts "Running reframe with aspect_ratio: #{aspect_ratio}"
-      image_data = image.write_to_buffer(".jpg")
-      data_uri = "data:image/jpg;base64,#{Base64.strict_encode64(image_data)}"
-
       prediction = Replicate.run(
         version: "luma/reframe-image",
         input: {
-          image_url: data_uri,
-          aspect_ratio: aspect_ratio
+          image_url: "https://a9832f7c3d7d.ngrok-free.app#{url}",
+          aspect_ratio: aspect_ratio,
+          model: "photon-1",
+          prompt:
         }
         # input: { image: data_uri, model: quality == :low ? "photon-flash-1" : "photon-1", prompt: "", aspect_ratio: }
       )

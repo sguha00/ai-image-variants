@@ -2,22 +2,23 @@
   <p>
     <strong>Owner:</strong><br>
     <% if restaurant.owner_image.attached? %>
-      <%= link_to image_tag(restaurant.owner_image.variant({ face_crop: { padding: 0.3 }, resize_to_limit: [100, 100]})), restaurant.owner_image %>
+      <%= link_to image_tag(restaurant.owner_image.variant({ face_crop: { padding: 0.2 }, resize_to_limit: [100, 100]})), restaurant.owner_image %>
+      <%= link_to image_tag(restaurant.owner_image.variant({ face_crop: { padding: 0.8 }, resize_to_limit: [100, 100]})), restaurant.owner_image %>
     <% end %>
   </p>
 
   <p>
     <strong>Logo:</strong><br>
     <% if restaurant.logo.attached? %>
-      <%= link_to image_tag(restaurant.logo.variant(:vectorized), width: 100, height: 100), restaurant.logo %>
+      <%= link_to image_tag(restaurant.logo.variant(:vectorized), width: 400, height: 400), restaurant.logo %><br>
+      <%= link_to image_tag(restaurant.logo.variant({ resize_to_limit: [400, 300], remove_bg: true })), restaurant.logo %>
     <% end %>
   </p>
 
   <p>
     <strong>Hero:</strong><br>
     <% if restaurant.hero.attached? %>
-      <%= link_to image_tag(restaurant.hero.variant({ resize_to_limit: [400, 300], remove_bg: true })), restaurant.hero %>
-      <%= link_to image_tag(restaurant.hero.variant({ resize_to_limit: [420, 180], reframe: { aspect_ratio: "21:9", url: url_for(restaurant.hero) } })), restaurant.hero %>
+      <%= link_to image_tag(restaurant.hero.variant({ reframe: { aspect_ratio: "21:9", prompt: "delicious fresh food", url: url_for(restaurant.hero)}, resize_to_limit: [1550, 450] } )), restaurant.hero %>
     <% end %>
   </p>
 
